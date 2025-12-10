@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión Vehicular de Baja California</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #666;
+            font-weight: normal;
+        }
+
+       
+        #map {
+            height: 450px;
+            width: 90%;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        
+        #grafica {
+            height: 350px;
+            width: 90%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestión Vehicular de Baja California</h1>
+    <h2>Algunas coordenadas no son precisas</h2>
+
+    <div id="map"></div>
+    <canvas id="grafica"></canvas>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+    <script>
+        // Crear mapa centrado en Baja California y ajustado a zoom óptimo
+        const map = L.map('map').setView([32.5, -116.9], 9);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Genera colores aleatorios
+        function getRandomColor() {
+            const r = Math.floor(Math.random()*200 + 30);
+            const g = Math.floor(Math.random()*200 + 30);
+            const b = Math.floor(Math.random()*200 + 30);
+            return `rgba(${r}, ${g}, ${b}, 0.7)`;
+        }
+
+        // Cargar los lugares desde la API
+        fetch('/api/lugares')
+            .then(res => res.json())
+            .then(data => {
+                // Añadir marcadores con popup informativo
+                data.forEach(lugar => {
+                    L.marker([lugar.lat, lugar.lon])
+                        .addTo(map)
+                        .bindPopup(
+                            `<b>${lugar.nombre}</b><br>` +
+                            `Actividad: ${lugar.actividad}<br>` +
+                            `CP: ${lugar.cp}<br>` +
+                            `Municipio: ${lugar.municipio}`
+                        );
+                });
+
+                // Cantidades por municipio
+                const municipios = {};
+                data.forEach(l => {
+                    if (l.municipio) {
+                        municipios[l.municipio] = (municipios[l.municipio] || 0) + 1;
+                    }
+                });
+
+                const labels = Object.keys(municipios);
+                const cantidades = Object.values(municipios);
+                const colores = labels.map(() => getRandomColor());
+
+                // Gráfica
+                const ctx = document.getElementById('grafica').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Cantidad de lugares por municipio',
+                            data: cantidades,
+                            backgroundColor: colores,
+                            borderColor: colores.map(c => c.replace('0.7', '1')),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: true },
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'top'
+                            }
+                        },
+                        scales: {
+                            y: { 
+                                beginAtZero: true,
+                                ticks: { stepSize: 1 }
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
