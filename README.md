@@ -1,4 +1,4 @@
-# Proyecto de Backend - Gestión Vehicular de BC.
+# Gestión Vehicular de BC.
 
 Enlace: https://tecpatron.pythonanywhere.com/
 
