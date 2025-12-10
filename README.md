@@ -1,4 +1,4 @@
-# Gestión Vehicular de BC.
+# Gestión de Negocios Vehicular de BC.
 
 Enlace: https://tecpatron.pythonanywhere.com/
 
