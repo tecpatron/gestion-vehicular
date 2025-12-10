@@ -1,4 +1,4 @@
-# Proyecto de Backend - Gestión Vehicular de Baja California
+# Proyecto de Backend - Gestión Vehicular de BC.
 
 Enlace: https://tecpatron.pythonanywhere.com/
 
