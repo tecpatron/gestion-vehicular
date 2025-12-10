@@ -14,7 +14,7 @@ Ultima actualización: 2025-12-10
 - Background
 - Overview
 - Imágenes
-
+- Endpoints
 
 ## Objetivo
 _La expansión urbana y la densidad poblacional generan una alta demanda de servicios relacionados con movilidad y transporte, incluyendo talleres mecánicos, refaccionarias, gasolineras y otros negocios del sector automotriz. Sin embargo, la información disponible del INEGI se encuentra en formato plano, con redundancias y falta de separación clara de entidades, lo que dificulta identificar áreas saturadas, zonas desatendidas o oportunidades para nuevos negocios. Esto dificulta la toma de decisiones de empresarios, inversionistas y autoridades locales que buscan optimizar la oferta de servicios automotrices, planificar expansiones o fomentar conexiones estratégicas entre negocios._
@@ -51,3 +51,6 @@ El proyecto transforma los datos del INEGI en una base estratégica para la toma
 ![3](https://github.com/user-attachments/assets/44667c72-f668-4284-bf81-fbd4d7698f86)
 
 ![4](https://github.com/user-attachments/assets/3ee2d247-9370-4eab-9c09-79d027ba1b38)
+
+## Endpoints
+![7](https://github.com/user-attachments/assets/1fe79ee2-1d39-4f9c-add1-34d1c084996e)
