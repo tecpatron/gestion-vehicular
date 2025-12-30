@@ -51,6 +51,3 @@ El proyecto transforma los datos del INEGI en una base estratégica para la toma
 ![3](https://github.com/user-attachments/assets/44667c72-f668-4284-bf81-fbd4d7698f86)
 
 ![4](https://github.com/user-attachments/assets/3ee2d247-9370-4eab-9c09-79d027ba1b38)
-
-## Endpoints
-![7](https://github.com/user-attachments/assets/1fe79ee2-1d39-4f9c-add1-34d1c084996e)
