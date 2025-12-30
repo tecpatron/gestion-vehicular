@@ -4,8 +4,6 @@ Enlace: https://tecpatron.pythonanywhere.com/
 
 Author(s): E. Patrón
 
-Status: Review
-
 Ultima actualización: 2025-12-10
 
 ## Contenido
